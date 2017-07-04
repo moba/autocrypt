@@ -154,15 +154,6 @@ of the header as though the attribute does not exist, but MUST treat
 the entire header as invalid if it encounters a "critical" attribute
 it doesn't support.
 
-When parsing an incoming message, a MUA MUST examine all ``Autocrypt``
-headers, rather than just the first one. If there is more than one
-valid header, this MUST be treated as an error, and all ``Autocrypt``
-headers discarded as invalid.
-
-.. todo::
-
-   - Document why we skip on more than one valid header?
-
 ``type=1``: OpenPGP Based key data
 ++++++++++++++++++++++++++++++++++
 
@@ -262,7 +253,14 @@ Updating Autocrypt Peer State
 Incoming messages may be processed by an Autocrypt-client at different
 times, such as upon receipt or display. When this happens, the
 Autocrypt state for the sending peer is updated with this new
-information. This update process depends on:
+information.
+
+When parsing an incoming message, a MUA MUST examine all ``Autocrypt``
+headers, rather than just the first one. If there is more than one
+valid header, this MUST be treated as an error, and all ``Autocrypt``
+headers discarded as invalid.
+
+Updating the peer state depends on:
 
 - the "effective date" of the message.
 
@@ -304,6 +302,9 @@ overall. Additionally update the state as follows:
    something about not doing Autocrypt processing on message receipt
    if the message is believed to be spam?
 
+.. todo::
+
+   - Document why we skip on more than one valid header?
 
 Provide a recommendation for message encryption
 -----------------------------------------------
