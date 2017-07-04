@@ -106,6 +106,9 @@ minimal Level 1 MUA will only include these two attributes.  If
 ``own_state.prefer_encrypt`` is set to ``mutual`` then the header MUST
 have a ``prefer-encrypt`` attribute set to ``mutual``.
 
+The client MUST NOT include more than one valid Level 1 ``Autocrypt``
+header.
+
 If the ``From`` address changes during message composition (E.g. if
 the user selects a different outbound identity), the Autocrypt-capable
 client MUST change the ``Autocrypt`` header appropriately.
@@ -255,9 +258,9 @@ times, such as upon receipt or display. When this happens, the
 Autocrypt state for the sending peer is updated with this new
 information.
 
-When parsing an incoming message, a MUA MUST examine all ``Autocrypt``
+When parsing an incoming message, a MUA SHOULD examine all ``Autocrypt``
 headers, rather than just the first one. If there is more than one
-valid header, this MUST be treated as an error, and all ``Autocrypt``
+valid header, this SHOULD be treated as an error, and all ``Autocrypt``
 headers discarded as invalid.
 
 Updating the peer state depends on:
@@ -301,10 +304,6 @@ overall. Additionally update the state as follows:
    processing on message receipt with spam filtering.  Should we say
    something about not doing Autocrypt processing on message receipt
    if the message is believed to be spam?
-
-.. todo::
-
-   - Document why we skip on more than one valid header?
 
 Provide a recommendation for message encryption
 -----------------------------------------------

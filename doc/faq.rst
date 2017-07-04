@@ -34,12 +34,15 @@ An ECC key is roughly 500 bytes formatted in Base64 and RSA 2048 key is
 we opted for readability.
 
 
-Why do you drop all headers if there is more than one?
-------------------------------------------------------
+Why do you ask to drop all headers if there is more than one?
+-------------------------------------------------------------
 
-Because of multi-agent usage we may have to handle an inconsistent stream of
-headers already. Making this an inconsistent stream of multiple keys with
-priorities sounds like a lot of pain.
+Because of multi-agent usage we may have to handle an inconsistent
+stream of headers already. Making this an inconsistent stream of
+multiple headers per mail sounds like a lot of pain. We could come up
+with rules which header to pick. But whatever we do, it has to be clear
+and agreed so all clients behave the same way. So dropping all headers
+seemed like the simplest way to avoid an ambiguous state in level 1.
 
 
 What if I want my MUA to announce two different keys?
